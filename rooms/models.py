@@ -10,13 +10,17 @@ class Room(CommonModel):
         PRIVATE_ROOM = ("private_room", "Private Room")
         SHARED_ROOM = ("shared_room", "Shared Room")
 
+    name = models.CharField(
+        max_length=180,
+        default="",
+    )
     country = models.CharField(
         max_length=50,
         default="United States",
     )
     city = models.CharField(
         max_length=80,
-        default="San Francisco",
+        default="Cupertino",
     )
     price = models.PositiveIntegerField()
     rooms = models.PositiveIntegerField()
@@ -36,6 +40,9 @@ class Room(CommonModel):
         "rooms.Amenity",
     )
 
+    def __str__(self) -> str:
+        return self.name
+
 class Amenity(CommonModel):
     name = models.CharField(max_length=150)
     description = models.CharField(
@@ -43,3 +50,10 @@ class Amenity(CommonModel):
         null=True,
         blank=True,
     )
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Amenities"
+    
