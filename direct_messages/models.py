@@ -9,6 +9,9 @@ class ChattingRoom(CommonModel):
         "users.User",
     )
 
+    def __str__(self):
+        return "Chatting Room"
+
 class Message(CommonModel):
 
     """ Message Model Definition """
@@ -24,3 +27,5 @@ class Message(CommonModel):
         "direct_messages.ChattingRoom",
         on_delete=models.CASCADE,
     )
+    def __str__(self):
+        return f"{self.user} says: {self.text}"
